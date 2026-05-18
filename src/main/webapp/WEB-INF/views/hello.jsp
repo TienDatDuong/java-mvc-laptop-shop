@@ -10,6 +10,7 @@
             <title>Document</title>
             <!-- Latest compiled and minified CSS -->
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+            <!-- <link rel="stylesheet" href="/LICENSE_VI.MD"> -->
             <!-- <link href="${pageContext.request.contextPath}/resources/css/css_bootstrap/bootstrap.min.css"
                 rel="stylesheet"> -->
 
@@ -17,6 +18,7 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <link href="/css/demo.css" rel="stylesheet">
             <!-- <script src="${pageContext.request.contextPath}/resources/js/js_bootstrap/bootstrap.bundle.min.js"></script> -->
 
         </head>
@@ -25,7 +27,7 @@
             <div>Hello JSP</div>
             <h1>${keyMessage}</h1>
             <button class="btn btn-primary">Hello Button</button>
-            <button class="btn btn-primary" type="submit">Button</button>
+            <button>Button</button>
         </body>
 
         </html>
