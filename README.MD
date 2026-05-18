@@ -1,6 +1,6 @@
 # 🚀 Java Spring MVC - Xây Dựng FullStack Website với Spring Boot
 
-This is the **starter project** for the **Java Spring MVC - Xây Dựng FullStack Website với Spring Boot** course by **Hỏi Dân IT**.
+This is the **starter project** for the **Java Spring MVC - Xây Dựng FullStack Website với Spring Boot** course by **dtdat**.
 
 ---
 
@@ -15,7 +15,7 @@ This source code is provided **exclusively for enrolled students** in this cours
 - Account suspension on learning platforms.  
 - Legal action in serious cases.  
 
-📩 For inquiries, contact: **admin@hoidanit.vn**
+📩 For inquiries, contact: **duongtiendat3103@gmail.com**
 
 ---
 
@@ -27,13 +27,9 @@ Môi trường chạy dự án: Java 17
 ## Về tác giả
 Mọi thông tin về Tác giả Hỏi Dân IT, các bạn có thể tìm kiếm tại đây:
 
-Website chính thức: https://hoidanit.vn/
-
-Youtube “Hỏi Dân IT” : https://www.youtube.com/@hoidanit
-
-Tiktok “Hỏi Dân IT” :  https://www.tiktok.com/@hoidanit
-
-Fanpage “Hỏi Dân IT” : https://www.facebook.com/askITwithERIC/
-
-Udemy Hỏi Dân IT: https://www.udemy.com/user/eric-7039/
+Website chính thức: 
+Youtube “Hỏi Dân IT” :
+Tiktok “Hỏi Dân IT” :  
+Fanpage “Hỏi Dân IT” :
+Udemy Hỏi Dân IT: 
 
