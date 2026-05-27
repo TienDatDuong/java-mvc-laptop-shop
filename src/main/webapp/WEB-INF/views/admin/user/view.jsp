@@ -26,14 +26,15 @@
             <body>
                 <div class="mx-auto container mt-4">
                     <div class="row">
-                        <h3>View a user</h3>
+                        <div class="d-flex w-full justify-content-between mb-3">
+                            <h3>View a user ${id}</h3>
+                            <a href="/admin/user" class="btn btn-primary">Back</a>
+                        </div>
                         <ul class="list-group">
-                            <li class="list-group-item active" aria-current="true">${user.fullName}</li>
-                            <li class="list-group-item">Email: </li>
-                            <li class="list-group-item">Full Name: </li>
-                            <li class="list-group-item">Address: </li>
-                            <li class="list-group-item">Phone</li>
-
+                            <li class="list-group-item active" aria-current="true">Full Name: ${user.fullName}</li>
+                            <li class="list-group-item">Email: ${user.email}</li>
+                            <li class="list-group-item">Address: ${user.address}</li>
+                            <li class="list-group-item">Phone: ${user.phone}</li>
                         </ul>
                     </div>
 

@@ -44,10 +44,26 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/view/{id}")
     public String viewUserPage(Model model, @PathVariable long id) {
-        Optional<User> user = this.userService.GetUser(id);
-        model.addAttribute("users", user);
-        System.out.println(user);
+        User user = this.userService.GetUser(id);
+        model.addAttribute("id", id);
+        model.addAttribute("user", user);
+        System.out.println("user ===>"+user);
         return "admin/user/view";
+    }
+
+    @RequestMapping(value = "/admin/user/edit/{id}")
+    public String editUserPage(Model model, @PathVariable long id) {
+        User user = this.userService.GetUser(id);
+        model.addAttribute("id", id);
+        model.addAttribute("user", user);
+        System.out.println("user ===>" + user);
+        return "admin/user/edit";
+    }
+
+    @RequestMapping(value = "/admin/user/update", method = RequestMethod.POST)
+    public String updateUserPage(Model model, @ModelAttribute("user") User dtdat) {
+        this.userService.Update(dtdat);
+        return "redirect:/admin/user";
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)

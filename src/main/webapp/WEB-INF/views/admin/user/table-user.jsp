@@ -49,8 +49,8 @@
                                             <td>${item.fullName}</td>
                                             <td>
                                                 <a href="/admin/user/view/${item.id}" class="btn btn-success">View</a>
-                                                <a href="#" class="btn btn-warning">Edit</a>
-                                                <a href="#" class="btn btn-danger">Delete</a>
+                                                <a href="/admin/user/edit/${item.id}" class="btn btn-warning">Edit</a>
+                                                <a href="/admin/user/delete/${item.id}" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
