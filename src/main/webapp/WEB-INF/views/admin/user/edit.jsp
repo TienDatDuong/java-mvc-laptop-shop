@@ -27,26 +27,29 @@
                 <div class="mx-auto container mt-4">
                     <div class="row">
                         <h3>Edit a user</h3>
-                        <form:form method="post" action="/admin/user/update" modelAttribute="user">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <form:input type="email" path="email" class="form-control"
-                                    aria-describedby="emailHelp" />
+                        <form:form method="post" action="/admin/user/edit" modelAttribute="users">
+                            <div class="mb-3" style="display: none;">
+                                <label class="form-label">ID</label>
+                                <form:input type="text" path="id" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label class="form-label">Email</label>
+                                <form:input type="email" path="email" class="form-control" disabled="true" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
                                 <form:input type="password" path="password" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Phone number:</label>
+                                <label class="form-label">Phone number:</label>
                                 <form:input type="text" path="phone" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label for="fullName" class="form-label">Full Name:</label>
+                                <label class="form-label">Full Name:</label>
                                 <form:input type="text" path="fullName" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label for="address" class="form-label">Address:</label>
+                                <label class="form-label">Address:</label>
                                 <form:input type="text" path="address" class="form-control" />
                             </div>
                             <div class="d-flex w-full justify-content-between">

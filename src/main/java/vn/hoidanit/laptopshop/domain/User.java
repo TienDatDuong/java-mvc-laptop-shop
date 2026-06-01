@@ -1,11 +1,13 @@
 package vn.hoidanit.laptopshop.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.management.MXBean;
+
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +17,14 @@ public class User {
     private String fullName;
     private String address;
     private String phone;
+    private String avartar;
+
+    @ManyToOne
+    @JoinColumn(name="role_ids")
+    private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> order;
 
     @Override
     public String toString() {
@@ -25,7 +35,16 @@ public class User {
                 ", fullName='" + fullName + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", avartar='" + avartar + '\'' +
                 '}';
+    }
+
+    public String getAvartar() {
+        return avartar;
+    }
+
+    public void setAvartar(String avartar) {
+        this.avartar = avartar;
     }
 
     public long getId() {

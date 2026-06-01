@@ -29,20 +29,11 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public User GetUser(Long id) {
+    public User GetUserById(Long id) {
         return this.userRepository.findById(id).orElse(null);
     }
 
-    public User Update(User user) {
-        User existingUser = this.userRepository.findById(user.getId());
-        if (existingUser != null) {
-            existingUser.setFullName(user.getFullName());
-            existingUser.setEmail(user.getEmail());
-            existingUser.setAddress(user.getAddress());
-            existingUser.setPhone(user.getPhone());
-            return this.userRepository.save(existingUser);
-        }   else {
-            return null; // Hoặc bạn có thể ném ra một ngoại lệ tùy thuộc vào cách bạn muốn xử lý trường hợp này
-        }
-    }
+     public void deleteUserById(long id) {
+         this.userRepository.deleteById(id);
+     };
 }
