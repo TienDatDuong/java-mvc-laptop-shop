@@ -5,9 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AdminController {
+public class DashboardController {
+
     @RequestMapping("/admin")
-    public String getUserPage(Model model) {
+    public String getDashboard(Model model) {
+        // String message = this.userService.handleHello();
+        model.addAttribute("keyMessage", "message");
         return "admin/dashboard/show";
     }
 }
