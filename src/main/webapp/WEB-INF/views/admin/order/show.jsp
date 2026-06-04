@@ -23,19 +23,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="mx-auto container mt-4">
-                <div class="row">
-                    <div class="d-flex w-full justify-content-between mb-3">
-                        <h3>View a user ${id}</h3>
-                        <a href="/admin/user" class="btn btn-primary">Back</a>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item active" aria-current="true">Full Name: ${user.fullName}</li>
-                        <li class="list-group-item">Email: ${user.email}</li>
-                        <li class="list-group-item">Address: ${user.address}</li>
-                        <li class="list-group-item">Phone: ${user.phone}</li>
-                    </ul>
-                </div>
-
+                order
             </div>
         </main>
         <jsp:include page="../layout/footer.jsp"/>
