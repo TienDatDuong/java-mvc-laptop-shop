@@ -84,7 +84,7 @@
                         </div>
                         <div class="row">
                             <div class="mb-3 col-sm-6">
-                                <img style="max-height: 250px; display: none;" alt="avartar preview"
+                                <img style="max-height: 120px; display: none; display: inline-block" alt="avartar preview"
                                     id="avatarPreview"/>
                             </div>
                         </div>

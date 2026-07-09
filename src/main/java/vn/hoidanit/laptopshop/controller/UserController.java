@@ -80,12 +80,20 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/edit")
-    public String updateUserPage(Model model, @ModelAttribute("users") User dtdat) {
+    public String updateUserPage(
+            Model model,
+            @ModelAttribute("users") User dtdat,
+            @RequestParam(value = "avatar", required = false) MultipartFile file) throws IOException {
         User currentUser = this.userService.GetUserById(dtdat.getId());
         if (currentUser != null) {
             currentUser.setAddress(dtdat.getAddress());
             currentUser.setFullName(dtdat.getFullName());
             currentUser.setPhone(dtdat.getPhone());
+
+            if (file != null && !file.isEmpty()) {
+                String fileImg = uploadService.handlerSaveUploadFile(file, "avatar");
+                currentUser.setAvartar(fileImg);
+            }
 
             this.userService.handleSaveUser(currentUser);
         }
