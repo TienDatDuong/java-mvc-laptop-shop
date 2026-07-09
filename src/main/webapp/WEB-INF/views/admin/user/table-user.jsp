@@ -35,6 +35,7 @@
                                 <th>ID</th>
                                 <th>Email</th>
                                 <th>Full Name</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -45,6 +46,7 @@
                                     <td>${item.id}</td>
                                     <td>${item.email}</td>
                                     <td>${item.fullName}</td>
+                                    <td>${item.role.name}</td>
                                     <td>
                                         <a href="/admin/user/view/${item.id}" class="btn btn-success">View</a>
                                         <a href="/admin/user/edit/${item.id}" class="btn btn-warning">Edit</a>
@@ -63,13 +65,13 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="/js/chart-area-demo.js"></script>
-<script src="/js/chart-bar-demo.js"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
-<script src="/js/datatables-simple-demo.js"></script>
+
 <style>
     header {
         display: flex;

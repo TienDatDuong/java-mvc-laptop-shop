@@ -20,6 +20,7 @@
             const avatarFile = $("#avatarFile");
             avatarFile.change(function (e) {
                 const imgURL = URL.createObjectURL(e.target.files[0]);
+                console.log("imgURL",imgURL);
                 $("#avatarPreview").attr("src", imgURL);
                 $("#avatarPreview").css({"display": "block"});
             });
@@ -37,7 +38,10 @@
             <div class="mx-auto container mt-4">
                 <div class="row">
                     <h3>Create a user</h3>
-                    <form:form method="post" action="/admin/user/create" modelAttribute="newUser">
+                    <form:form method="post" action="/admin/user/create"
+                               modelAttribute="newUser"
+                               enctype="multipart/form-data"
+                    >
                         <div class="row">
                             <div class="mb-3 col-sm-6">
                                 <label for="email" class="form-label">Email</label>
@@ -68,14 +72,14 @@
                         <div class="row">
                             <div class="mb-3 col-sm-6">
                                 <label for="address" class="form-label">RoLe:</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option value="1">Admin</option>
-                                    <option value="2">User</option>
-                                </select>
+                                <form:select class="form-select" aria-label="Default select example" path="role.name">
+                                    <option value="ADMIN">Admin</option>
+                                    <option value="USER">User</option>
+                                </form:select>
                             </div>
                             <div class="mb-3 col-sm-6">
                                 <label for="address" class="form-label">Avartar:</label>
-                                <input type="file" class="form-control" id="avatarFile" accept=".png, .jpg, .jpeg">
+                                <input type="file" class="form-control" id="avatarFile" name="avatar" accept=".png, .jpg, .jpeg">
                             </div>
                         </div>
                         <div class="row">
@@ -89,7 +93,6 @@
                         <div class="d-flex w-full justify-content-between">
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <a href="/admin/user" class="btn btn-primary">Back</a>
-
                         </div>
                     </form:form>
                 </div>
@@ -103,11 +106,11 @@
         crossorigin="anonymous"></script>
 <script src="/js/scripts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="/js/chart-area-demo.js"></script>
-<script src="/js/chart-bar-demo.js"></script>
+
+<s
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
-<script src="/js/datatables-simple-demo.js"></script>
+
 </body>
 
 </html>

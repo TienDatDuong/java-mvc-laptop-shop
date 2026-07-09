@@ -14,6 +14,17 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script>
+        // Chạy ngay khi trình duyệt vừa nạp xong giao diện
+        document.addEventListener("DOMContentLoaded", function() {
+            let originalName = document.getElementById("hiddenAvatar").value;
+            let cleanName = originalName.replace(/\\/g, "");
+
+            // Gán src để hiển thị ảnh lên màn hình update
+            document.getElementById("view_img").src = "/images/avatar/" + encodeURIComponent(cleanName);
+        });
+    </script>
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -28,12 +39,18 @@
                         <h3>View a user ${id}</h3>
                         <a href="/admin/user" class="btn btn-primary">Back</a>
                     </div>
-                    <ul class="list-group">
+                    <ul class="list-group m-2">
                         <li class="list-group-item active" aria-current="true">Full Name: ${user.fullName}</li>
                         <li class="list-group-item">Email: ${user.email}</li>
                         <li class="list-group-item">Address: ${user.address}</li>
                         <li class="list-group-item">Phone: ${user.phone}</li>
                     </ul>
+                    <div class="border border-dark m-2 rounded-3">
+                        <input type="hidden" id="hiddenAvatar" value="${user.avartar}" />
+                        <img style="max-height: 250px" alt="avartar preview"
+                             id="view_img" src=""
+                        />
+                    </div>
                 </div>
 
             </div>
@@ -43,13 +60,13 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="/js/chart-area-demo.js"></script>
-<script src="/js/chart-bar-demo.js"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
-<script src="/js/datatables-simple-demo.js"></script>
+
 </body>
 
 </html>

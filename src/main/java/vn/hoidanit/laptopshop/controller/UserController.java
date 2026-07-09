@@ -1,30 +1,39 @@
 package vn.hoidanit.laptopshop.controller;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.multipart.MultipartFile;
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserService;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private  final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+
+    public UserController(UserService userService, UploadService uploadService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @RequestMapping("/")
-    public String getHomePage(Model model) {
-        // String message = this.userService.handleHello();
-        model.addAttribute("keyMessage", "message");
-        return "hello";
-    }
+//    @RequestMapping("/")
+//    public String getHomePage(Model model) {
+//        // String message = this.userService.handleHello();
+//        model.addAttribute("keyMessage", "message");
+//        return "hello";
+//    }
 
 
     @RequestMapping("/admin/user")
@@ -35,14 +44,23 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User dtdat) {
-        this.userService.handleSaveUser(dtdat);
-        return "redirect:/admin/user";
+    public String createUserPage(
+            Model model, @ModelAttribute("newUser") User dtdat,
+            @RequestParam("avatar") MultipartFile file) throws IOException {
+
+             String fileImg = uploadService.handlerSaveUploadFile(file, "avatar");
+
+             dtdat.setPassword(passwordEncoder.encode(dtdat.getPassword()));
+            dtdat.setAvartar(fileImg);
+            dtdat.setRole( userService.getRoleByName(dtdat.getRole().getName()));
+           this.userService.handleSaveUser(dtdat);
+            return "redirect:/admin/user";
     }
 
     @RequestMapping(value = "/admin/user/create")
     public String createUserPage(Model model) {
         model.addAttribute("newUser", new User());
+
         return "admin/user/create";
     }
 

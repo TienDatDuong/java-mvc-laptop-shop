@@ -14,6 +14,17 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script>
+        // Chạy ngay khi trình duyệt vừa nạp xong giao diện
+        document.addEventListener("DOMContentLoaded", function() {
+            let originalName = document.getElementById("hiddenAvatar").value;
+            if (!originalName) return;
+            let cleanName = originalName.replace(/\\/g, "");
+
+            // Gán src để hiển thị ảnh lên màn hình update
+            document.getElementById("view_img").src = "/images/avatar/" + encodeURIComponent(cleanName);
+        });
+    </script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -50,11 +61,18 @@
                             <label class="form-label">Address:</label>
                             <form:input type="text" path="address" class="form-control" />
                         </div>
+                        <div class="border border-dark mb-3 rounded-3">
+                            <form:hidden path="avartar" id="hiddenAvatar" />
+                            <img style="max-height: 250px" alt="avartar preview"
+                                 id="view_img" src=""
+                            />
+                        </div>
                         <div class="d-flex w-full justify-content-between">
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <a href="/admin/user" class="btn btn-primary">Back</a>
 
                         </div>
+
                     </form:form>
                 </div>
 
@@ -65,13 +83,13 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="/js/chart-area-demo.js"></script>
-<script src="/js/chart-bar-demo.js"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
-<script src="/js/datatables-simple-demo.js"></script>
+
 </body>
 
 </html>
