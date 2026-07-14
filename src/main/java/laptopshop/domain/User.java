@@ -3,6 +3,9 @@ package laptopshop.domain;
 import javax.management.MXBean;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -12,8 +15,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotNull
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
+
+    @NotNull
+    @Size(min = 3, message = "Password phải có tối thiểu 3 ký tự")
     private String password;
+
+    @NotNull
+    @Size(min = 3,  message = "Name phải có tối thiểu 3 ký tự")
     private String fullName;
     private String address;
     private String phone;

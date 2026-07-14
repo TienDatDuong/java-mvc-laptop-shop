@@ -22,8 +22,42 @@
     <jsp:include page="../layout/sidebar.jsp"/>
     <div id="layoutSidenav_content">
         <main>
-            <div class="mx-auto container mt-4">
-                product
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <header>
+                            <h3>Table Product</h3>
+                            <a href="/admin/product/create" class="btn btn-primary">Create a Product</a>
+                        </header>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Factory</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <c:forEach var="item" items="${products}">
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.price}</td>
+                                    <td>${item.factory}</td>
+                                    <td>
+                                        <a href="/admin/product/view/${item.id}" class="btn btn-success">View</a>
+                                        <a href="/admin/product/edit/${item.id}" class="btn btn-warning">Edit</a>
+                                        <a href="/admin/product/delete/${item.id}" class="btn btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </main>
         <jsp:include page="../layout/footer.jsp"/>
@@ -38,6 +72,15 @@
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
 
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+</style>
 </body>
 
 </html>

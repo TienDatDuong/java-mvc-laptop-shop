@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.List;
 
 
+import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -45,9 +48,22 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String createUserPage(
-            Model model, @ModelAttribute("newUser") User dtdat,
+            Model model,
+            @Valid @ModelAttribute("newUser") User dtdat ,
+            BindingResult newBindingResult,
             @RequestParam("avatar") MultipartFile file) throws IOException {
 
+//            List<FieldError> errors = (List<FieldError>) newBindingResult.getFieldError();
+        // RIGHT: This returns a List natively
+        List<FieldError> errors = newBindingResult.getFieldErrors();
+
+
+            for (FieldError error : errors) {
+                System.out.println(">>>>" + error.getField() + ">>>>" + error.getDefaultMessage());
+            }
+            if (newBindingResult.hasErrors()) {
+                return "admin/user/create";
+            }
              String fileImg = uploadService.handlerSaveUploadFile(file, "avatar");
 
              dtdat.setPassword(passwordEncoder.encode(dtdat.getPassword()));

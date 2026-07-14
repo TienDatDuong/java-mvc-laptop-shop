@@ -1,8 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib prefix="fomr" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +22,7 @@
                 const imgURL = URL.createObjectURL(e.target.files[0]);
                 console.log("imgURL",imgURL);
                 $("#avatarPreview").attr("src", imgURL);
-                $("#avatarPreview").css({"display": "inline-block"});
+                $("#avatarPreview").css({"display": "block"});
             });
         });
     </script>
@@ -39,74 +37,88 @@
         <main>
             <div class="mx-auto container mt-4">
                 <div class="row">
-                    <h3>Create a user</h3>
-                    <form:form method="post" action="/admin/user/create"
-                               modelAttribute="newUser"
+                    <h3>Create a product</h3>
+                    <form:form method="post" action="/admin/product/create"
+                               modelAttribute="product"
                                enctype="multipart/form-data"
                     >
+                        <c:set var="errorName"><form:errors path="name" cssClass="invalid-feedback"/></c:set>
+                        <c:set var="errorPrice"><form:errors path="price" cssClass="invalid-feedback"/></c:set>
+                        <c:set var="errorDetailDesc"><form:errors path="detailDesc" cssClass="invalid-feedback"/></c:set>
+                        <c:set var="errorShortDesc"><form:errors path="shortDesc" cssClass="invalid-feedback"/></c:set>
+                        <c:set var="errorQuantity"><form:errors path="quantity" cssClass="invalid-feedback"/></c:set>
                         <div class="row">
                             <div class="mb-3 col-sm-6">
-                                <spring:bind path="newUser.email">
-                                <label for="email" class="form-label">Email</label>
-                                <form:input type="text" path="email" class="form-control ${status.error ? 'is-invalid' : ''}"
+
+                                <label class="form-label">Name</label>
+                                <form:input type="text" path="name" class="form-control ${not empty errorName ? 'is-invalid' : ''}"
                                             aria-describedby="emailHelp"/>
-                                <fomr:errors path="email" cssClass="invalid-feedback"/>
-                                </spring:bind>
+                                ${errorName}
                             </div>
                             <div class="mb-3 col-sm-6">
-                                <spring:bind path="newUser.email">
-                                <label for="password" class="form-label">Password</label>
-                                <form:input type="password" path="password" class="form-control ${status.error ? 'is-invalid' : ''}"/>
-                                <fomr:errors path="password" cssClass="invalid-feedback"/>
-                                </spring:bind>
+
+                                <label for="price" class="form-label">Price</label>
+                                <form:input type="number" path="price" class="form-control  ${not empty errorPrice? 'is-invalid' : ''}"/>
+                                    ${errorPrice}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-12 col-sm-12">
+
+                                <label class="form-label">Detail description:</label>
+                                <form:textarea type="text" path="detailDesc" class="form-control  ${not empty errorDetailDesc? 'is-invalid' : ''}"/>
+                                    ${errorDetailDesc}
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-sm-6">
-                                <label for="phone" class="form-label">Phone number:</label>
-                                <form:input type="text" path="phone" class="form-control"/>
+
+                                <label class="form-label">Short desription</label>
+                                <form:input type="shortDesc" path="shortDesc" class="form-control  ${not empty errorShortDesc? 'is-invalid' : ''}"/>
+                                    ${errorShortDesc}
                             </div>
                             <div class="mb-3 col-sm-6">
-                                <spring:bind path="newUser.fullName">
-                                <label for="fullName" class="form-label">Full Name:</label>
-                                <form:input type="text" path="fullName" class="form-control ${status.error ? 'is-invalid' : ''}"/>
-                                <fomr:errors path="fullName" cssClass="invalid-feedback"/>
-                                </spring:bind>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="mb-3 col-sm-12">
-                                <label for="address" class="form-label">Address:</label>
-                                <form:input type="text" path="address" class="form-control"/>
+
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <form:input type="text" path="quantity" class="form-control  ${not empty errorQuantity? 'is-invalid' : ''}"/>
+                                    ${errorQuantity}
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-sm-6">
-                                <label for="address" class="form-label">RoLe:</label>
-                                <form:select class="form-select" aria-label="Default select example" path="role.name">
-                                    <option value="ADMIN">Admin</option>
-                                    <option value="USER">User</option>
+                                <label class="form-label">Factory</label>
+                                <form:select class="form-select" aria-label="Default select example" path="factory">
+                                    <option value="ADMIN">LG</option>
+                                    <option value="USER">SAMSUNG</option>
                                 </form:select>
                             </div>
                             <div class="mb-3 col-sm-6">
-                                <label for="address" class="form-label">Avartar:</label>
-                                <input type="file" class="form-control" id="avatarFile" name="avatar" accept=".png, .jpg, .jpeg">
+                                <label for="quantity" class="form-label">Target</label>
+                                <form:select class="form-select" aria-label="Default select example" path="target">
+                                    <option value="ADMIN">Gaming</option>
+                                    <option value="USER">Văn phòng</option>
+                                </form:select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-sm-6">
+                                <label class="form-label">Avartar:</label>
+                                <input type="file" class="form-control" id="avatarFile" name="imageProduct" accept=".png, .jpg, .jpeg">
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-sm-6">
                                 <img style="max-height: 120px; display: none;" alt="avartar preview"
-                                    id="avatarPreview"/>
+                                     id="avatarPreview"/>
                             </div>
                         </div>
-
-
                         <div class="d-flex w-full justify-content-between">
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <a href="/admin/user" class="btn btn-primary">Back</a>
                         </div>
                     </form:form>
                 </div>
+
 
             </div>
         </main>
