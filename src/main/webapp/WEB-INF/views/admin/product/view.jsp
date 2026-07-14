@@ -39,18 +39,18 @@
                         <h3>View a product ${id}</h3>
                         <a href="/admin/product" class="btn btn-primary">Back</a>
                     </div>
+                    <div >
+                        <input type="hidden" id="hiddenAvatar" value="${product.image}" />
+                        <img style="max-height: 250px;  display: inline-block" alt="avartar preview" class="border border-dark rounded-3"
+                             id="view_img" src=""
+                        />
+                    </div>
                     <ul class="list-group m-2">
                         <li class="list-group-item active" aria-current="true">Name: ${product.name}</li>
                         <li class="list-group-item">Price: ${product.price}</li>
                         <li class="list-group-item">detailDesc: ${product.detailDesc}</li>
                         <li class="list-group-item">shortDesc: ${product.shortDesc}</li>
                     </ul>
-                    <div >
-                        <input type="hidden" id="hiddenAvatar" value="${product.image}" />
-                        <img style="max-height: 250px; display: inline-block" alt="avartar preview" class="border border-dark rounded-3"
-                             id="view_img" src=""
-                        />
-                    </div>
                 </div>
 
             </div>

@@ -21,6 +21,7 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
     private final UploadService uploadService;
+    private Product products;
 
     public ProductController(ProductService productService, UploadService uploadService) {
         this.productService = productService;
@@ -51,7 +52,39 @@ public class ProductController {
         return "/admin/product/delete";
     }
 
-    @PostMapping("/admin/user/delete")
+    @RequestMapping(value = "/admin/product/edit/{id}")
+    public String editUserPage(Model model, @PathVariable long id) {
+        Product pr = this.productService.getProductById(id);
+        model.addAttribute("products", pr);
+        return "admin/product/edit";
+    }
+
+    @PostMapping("/admin/product/edit")
+    public String updateUserPage(
+            Model model,
+            @ModelAttribute("products") Product products,
+            @RequestParam(value = "imageFile", required = false) MultipartFile imageFile) throws IOException {
+        this.products = products;
+        Product currentProduct = this.productService.getProductById(products.getId());
+        if (currentProduct != null) {
+            currentProduct.setName(products.getName());
+            currentProduct.setPrice(products.getPrice());
+            currentProduct.setDetailDesc(products.getDetailDesc());
+            currentProduct.setShortDesc(products.getShortDesc());
+            currentProduct.setQuantity(products.getQuantity());
+            currentProduct.setFactory(products.getFactory());
+            currentProduct.setTarget(products.getTarget());
+            if (imageFile != null && !imageFile.isEmpty()) {
+                String fileImg = uploadService.handlerSaveUploadFile(imageFile, "image");
+                currentProduct.setImage(fileImg);
+            }
+
+            this.productService.handSaveUser(currentProduct);
+        }
+        return "redirect:/admin/product";
+    }
+
+    @PostMapping("/admin/product/delete")
     public String deleteUser(Model model, @ModelAttribute("users") User dtdat) {
         this.productService.deleteProductById(dtdat.getId());
         return "redirect:/admin/product";
