@@ -1,6 +1,6 @@
 package laptopshop.controller.client;
 
-import laptopshop.domain.Product;
+import laptopshop.domain.Products;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class ItemController {
 
     @GetMapping(value = "/admin/product/create")
     public String createProductPage(Model model) {
-        model.addAttribute("product", new Product());
+        model.addAttribute("product", new Products());
 
         return "admin/product/create";
     }

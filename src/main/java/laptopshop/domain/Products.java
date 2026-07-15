@@ -3,10 +3,8 @@ package laptopshop.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
-import java.util.List;
-
 @Entity
-public class Product {
+public class Products {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

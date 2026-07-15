@@ -21,13 +21,13 @@ public class OrderDetail {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Products product;
 
-    public Product getProduct() {
+    public Products getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Products product) {
         this.product = product;
     }
 

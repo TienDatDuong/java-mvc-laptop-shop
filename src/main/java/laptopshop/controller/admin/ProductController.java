@@ -1,12 +1,10 @@
 package laptopshop.controller.admin;
 
 import jakarta.validation.Valid;
-import laptopshop.domain.Product;
+import laptopshop.domain.Products;
 import laptopshop.domain.User;
-import laptopshop.repository.ProductRepository;
 import laptopshop.service.ProductService;
 import laptopshop.service.UploadService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,7 +19,6 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
     private final UploadService uploadService;
-    private Product products;
 
     public ProductController(ProductService productService, UploadService uploadService) {
         this.productService = productService;
@@ -30,7 +27,7 @@ public class ProductController {
 
     @RequestMapping("/admin/product")
     public String getUserPage(Model model) {
-        List<Product> arrListProduct = this.productService.getAllProducts();
+        List<Products> arrListProduct = this.productService.getAllProducts();
         model.addAttribute("products", arrListProduct);
         return "admin/product/show";
     }
@@ -39,7 +36,7 @@ public class ProductController {
     public String viewProduct(
             Model model,
             @PathVariable long id) {
-        Product product = this.productService.getProductById(id);
+        Products product = this.productService.getProductById(id);
         model.addAttribute("product", product);
         model.addAttribute("id", id);
         return "admin/product/view";
@@ -54,7 +51,7 @@ public class ProductController {
 
     @RequestMapping(value = "/admin/product/edit/{id}")
     public String editUserPage(Model model, @PathVariable long id) {
-        Product pr = this.productService.getProductById(id);
+        Products pr = this.productService.getProductById(id);
         model.addAttribute("products", pr);
         return "admin/product/edit";
     }
@@ -62,10 +59,9 @@ public class ProductController {
     @PostMapping("/admin/product/edit")
     public String updateUserPage(
             Model model,
-            @ModelAttribute("products") Product products,
+            @ModelAttribute("products") Products products,
             @RequestParam(value = "imageFile", required = false) MultipartFile imageFile) throws IOException {
-        this.products = products;
-        Product currentProduct = this.productService.getProductById(products.getId());
+        Products currentProduct = this.productService.getProductById(products.getId());
         if (currentProduct != null) {
             currentProduct.setName(products.getName());
             currentProduct.setPrice(products.getPrice());
@@ -93,7 +89,7 @@ public class ProductController {
     @RequestMapping(value = "/admin/product/create", method = RequestMethod.POST)
     public String createUserPage(
             Model model,
-            @Valid @ModelAttribute("product") Product productItem,
+            @Valid @ModelAttribute("product") Products productItem,
             BindingResult bindingResult,
             @RequestParam("imageProduct") MultipartFile file) throws IOException {
 

@@ -1,6 +1,6 @@
 package laptopshop.service;
 
-import laptopshop.domain.Product;
+import laptopshop.domain.Products;
 import laptopshop.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,15 +15,15 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts() {
+    public List<Products> getAllProducts() {
         return this.productRepository.findAll();
     };
 
-    public Product handSaveUser(Product product) {
+    public Products handSaveUser(Products product) {
         return this.productRepository.save(product);
     }
 
-    public Product getProductById(long id) {
+    public Products getProductById(long id) {
         return this.productRepository.findById(id);
     }
 
