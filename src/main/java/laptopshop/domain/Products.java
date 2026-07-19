@@ -18,12 +18,16 @@ public class Products {
      private double price;
      private String image;
 
+    @NotNull()
     @NotBlank(message = "detailDesc không được để  trống")
+    @Column(columnDefinition = "MEDIUMTEXT")
      private String detailDesc;
 
+    @NotNull
     @NotBlank(message = "shortDesc không được để  trống")
      private String shortDesc;
 
+    @NotNull
     @Min(value = 1, message = "Số lượng sản phẩm cần lớn hơn hoặc bằng 1")
      private long quantity;
      private long sold;
