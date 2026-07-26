@@ -1,5 +1,6 @@
 package laptopshop.controller.client;
 
+import jakarta.validation.Valid;
 import laptopshop.domain.DTO.RegisterDTO;
 import laptopshop.domain.User;
 import laptopshop.service.UserService;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import laptopshop.domain.Products;
 import laptopshop.service.ProductService;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,8 +44,17 @@ public class HomePageController {
     }
 
     @PostMapping("/register")
-    public String getRegisterPage(Model model, @ModelAttribute("registerUser") RegisterDTO register) {
-       User user = this.userService.registerDTOtoUser(register);
+    public String getRegisterPage(
+            Model model,
+            @ModelAttribute("registerUser") @Valid RegisterDTO register,
+            BindingResult bindingResult) {
+        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+
+        for(FieldError fieldError : fieldErrors) {
+            System.out.println(fieldError.getField() + "-" + fieldError.getDefaultMessage());
+        }
+
+        User user = this.userService.registerDTOtoUser(register);
         String hashPassword = passwordEncoder.encode(register.getPassword());
 
         user.setPassword(passwordEncoder.encode(hashPassword));

@@ -1,5 +1,8 @@
 package laptopshop.domain.DTO;
 
+import laptopshop.service.validator.RegisterChecked;
+
+@RegisterChecked
 public class RegisterDTO {
     private String fristName;
     private String lastName;
