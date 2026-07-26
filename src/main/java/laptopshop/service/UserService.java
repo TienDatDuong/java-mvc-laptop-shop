@@ -1,8 +1,8 @@
 package laptopshop.service;
 
 import java.util.List;
-import java.util.Optional;
 
+import laptopshop.domain.DTO.RegisterDTO;
 import org.springframework.stereotype.Service;
 
 import laptopshop.domain.Role;
@@ -44,5 +44,13 @@ public class UserService {
 
     public Role getRoleByName(String name){
         return this.roleRepository.findByName(name);
+    };
+
+    public User registerDTOtoUser(RegisterDTO registerDTO) {
+        User user = new User();
+        user.setFullName(registerDTO.getFristName() + " " + registerDTO.getLastName());
+        user.setPassword(registerDTO.getPassword());
+        user.setEmail(registerDTO.getEmail());
+        return user;
     };
 }

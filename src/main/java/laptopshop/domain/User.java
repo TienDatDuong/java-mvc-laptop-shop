@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import laptopshop.service.validator.StrongPassword;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class User {
 
     @NotNull
     @Size(min = 3, message = "Password phải có tối thiểu 3 ký tự")
+    @StrongPassword(message = "Pass word phải có tối thiểu 8 ký tự.")
     private String password;
 
     @NotNull

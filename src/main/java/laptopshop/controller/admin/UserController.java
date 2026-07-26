@@ -53,9 +53,7 @@ public class UserController {
             BindingResult newBindingResult,
             @RequestParam("avatar") MultipartFile file) throws IOException {
 
-//            List<FieldError> errors = (List<FieldError>) newBindingResult.getFieldError();
-        // RIGHT: This returns a List natively
-        List<FieldError> errors = newBindingResult.getFieldErrors();
+            List<FieldError> errors = newBindingResult.getFieldErrors();
 
 
             for (FieldError error : errors) {
@@ -65,10 +63,10 @@ public class UserController {
                 return "admin/user/create";
             }
              String fileImg = uploadService.handlerSaveUploadFile(file, "avatar");
+            String hashPassword = passwordEncoder.encode(dtdat.getPassword());
 
-             dtdat.setPassword(passwordEncoder.encode(dtdat.getPassword()));
             dtdat.setAvartar(fileImg);
-
+            dtdat.setPassword(passwordEncoder.encode(hashPassword));
             dtdat.setRole( userService.getRoleByName(dtdat.getRole().getName()));
            this.userService.handleSaveUser(dtdat);
             return "redirect:/admin/user";
@@ -131,18 +129,3 @@ public class UserController {
     }
 
 }
-
-// @RestController
-// public class UserController {
-
-// private UserService userService;
-
-// public UserController(UserService userService) {
-// this.userService = userService;
-// }
-
-// @GetMapping("")
-// public String getHomePage() {
-// return this.userService.handleHello();
-// }
-// }
