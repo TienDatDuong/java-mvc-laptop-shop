@@ -27,56 +27,48 @@
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                             <div class="card-body">
                                 <form:form method="post" action="/register"
-                                           modelAttribute="registerUser"
-                                           enctype="multipart/form-data">
+                                           modelAttribute="registerUser">
+                                    <c:set var="errorEmail"><form:errors path="email" cssClass="invalid-feedback"/></c:set>
+                                    <c:set var="errorPassword"><form:errors path="confirmPassword" cssClass="invalid-feedback"/></c:set>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <spring:bind path="registerUser.fristName">
-                                                    <label for="fristName">First name</label>
-                                                    <form:input type="text" path="fristName" class="form-control ${status.error ? 'is-invalid' : ''}"/>
-                                                    <fomr:errors path="fristName" cssClass="invalid-feedback"/>
-                                                </spring:bind>
+                                                <form:input
+                                                        class="form-control"
+                                                        type="text" path="fristName"/>
+                                                <label>First name</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <spring:bind path="registerUser.lastName">
-                                                    <label for="lastName">Last name</label>
-                                                    <form:input type="text" path="lastName" class="form-control ${status.error ? 'is-invalid' : ''}"/>
-                                                    <fomr:errors path="lastName" cssClass="invalid-feedback"/>
-                                                </spring:bind>
-
+                                                <form:input  class="form-control" type="text" path="lastName"/>
+                                                <label>Last name</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <spring:bind path="registerUser.email">
-                                            <label for="email">Email address</label>
-                                            <form:input type="text" path="email" class="form-control ${status.error ? 'is-invalid' : ''}"
+                                            <form:input type="text" path="email"
+                                                        class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
                                                         aria-describedby="emailHelp"/>
-                                            <fomr:errors path="email" cssClass="invalid-feedback"/>
-                                        </spring:bind>
+                                            ${errorEmail}
+                                        <label>Email address</label>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <spring:bind path="registerUser.password">
-                                                    <label for="password">Password</label>
-                                                    <form:input type="password" path="password" class="form-control ${status.error ? 'is-invalid' : ''}"
+                                                    <form:input type="password" path="password"
+                                                                class="form-control"
                                                                 aria-describedby="emailHelp"/>
-                                                    <fomr:errors path="email" cssClass="invalid-feedback"/>
-                                                </spring:bind>
+                                                <label>Password</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <spring:bind path="registerUser.confirmPassword">
-                                                    <label for="confirmPassword">Confirm Password</label>
-                                                    <form:input type="password" path="confirmPassword" class="form-control ${status.error ? 'is-invalid' : ''}"
-                                                                aria-describedby="emailHelp"/>
-                                                    <fomr:errors path="email" cssClass="invalid-feedback"/>
-                                                </spring:bind>
+                                                    <form:input type="password" path="confirmPassword"
+                                                                class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
+                                                    />
+                                                    ${errorPassword}
+                                                <label>Confirm Password</label>
                                             </div>
                                         </div>
                                     </div>

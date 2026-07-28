@@ -44,23 +44,28 @@ public class HomePageController {
     }
 
     @PostMapping("/register")
-    public String getRegisterPage(
+    public String handeRegisterPage(
             Model model,
-            @ModelAttribute("registerUser") @Valid RegisterDTO register,
+            @ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
             BindingResult bindingResult) {
-        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
 
-        for(FieldError fieldError : fieldErrors) {
-            System.out.println(fieldError.getField() + "-" + fieldError.getDefaultMessage());
-        }
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
 
-        User user = this.userService.registerDTOtoUser(register);
-        String hashPassword = passwordEncoder.encode(register.getPassword());
+            for(FieldError fieldError : fieldErrors) {
+                System.out.println(fieldError.getField() + "-" + fieldError.getDefaultMessage());
+            }
 
-        user.setPassword(passwordEncoder.encode(hashPassword));
-        user.setRole( userService.getRoleByName("USER"));
-        this.userService.handleSaveUser(user);
-        return "redirect:/login";
+            if(bindingResult.hasErrors()) {
+                return "admin/auth/register";
+            }
+
+            User user = this.userService.registerDTOtoUser(registerDTO);
+            String hashPassword = passwordEncoder.encode(registerDTO.getPassword());
+
+            user.setPassword(passwordEncoder.encode(hashPassword));
+            user.setRole( userService.getRoleByName("USER"));
+            this.userService.handleSaveUser(user);
+            return "redirect:/login";
     }
 
     @RequestMapping("/login")

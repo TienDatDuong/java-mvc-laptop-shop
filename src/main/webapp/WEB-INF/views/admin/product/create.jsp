@@ -49,7 +49,6 @@
                         <c:set var="errorQuantity"><form:errors path="quantity" cssClass="invalid-feedback"/></c:set>
                         <div class="row">
                             <div class="mb-3 col-sm-6">
-
                                 <label class="form-label">Name</label>
                                 <form:input type="text" path="name" class="form-control ${not empty errorName ? 'is-invalid' : ''}"
                                             aria-describedby="emailHelp"/>

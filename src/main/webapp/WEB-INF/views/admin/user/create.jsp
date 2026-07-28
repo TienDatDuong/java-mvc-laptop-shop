@@ -50,14 +50,14 @@
                                 <label for="email" class="form-label">Email</label>
                                 <form:input type="text" path="email" class="form-control ${status.error ? 'is-invalid' : ''}"
                                             aria-describedby="emailHelp"/>
-                                <fomr:errors path="email" cssClass="invalid-feedback"/>
+                                <form:errors path="email" cssClass="invalid-feedback"/>
                                 </spring:bind>
                             </div>
                             <div class="mb-3 col-sm-6">
                                 <spring:bind path="newUser.email">
                                 <label for="password" class="form-label">Password</label>
                                 <form:input type="password" path="password" class="form-control ${status.error ? 'is-invalid' : ''}"/>
-                                <fomr:errors path="password" cssClass="invalid-feedback"/>
+                                <form:errors path="password" cssClass="invalid-feedback"/>
                                 </spring:bind>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                 <spring:bind path="newUser.fullName">
                                 <label for="fullName" class="form-label">Full Name:</label>
                                 <form:input type="text" path="fullName" class="form-control ${status.error ? 'is-invalid' : ''}"/>
-                                <fomr:errors path="fullName" cssClass="invalid-feedback"/>
+                                <form:errors path="fullName" cssClass="invalid-feedback"/>
                                 </spring:bind>
                             </div>
                         </div>
