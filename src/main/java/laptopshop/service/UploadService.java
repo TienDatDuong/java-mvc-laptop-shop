@@ -3,7 +3,6 @@ package laptopshop.service;
 import jakarta.servlet.ServletContext;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import jakarta.servlet.ServletContext;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

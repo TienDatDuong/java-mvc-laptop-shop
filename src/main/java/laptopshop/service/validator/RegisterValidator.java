@@ -3,9 +3,17 @@ package laptopshop.service.validator;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext; 
 import laptopshop.domain.DTO.RegisterDTO;
+import laptopshop.service.UserService;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class RegisterValidator implements ConstraintValidator<RegisterChecked, RegisterDTO> {
+
+    private UserService userService;
+
+    public RegisterValidator(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean isValid(RegisterDTO user, ConstraintValidatorContext context) {
@@ -22,6 +30,15 @@ public class RegisterValidator implements ConstraintValidator<RegisterChecked, R
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate("Passwords không chính xác")
                     .addPropertyNode("confirmPassword")
+                    .addConstraintViolation();
+
+            valid = false;
+        }
+
+        if (this.userService.checkEmail(user.getEmail())) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("Email đã tồn tại")
+                    .addPropertyNode("email")
                     .addConstraintViolation();
 
             valid = false;
