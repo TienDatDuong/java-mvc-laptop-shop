@@ -26,25 +26,21 @@
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                             <div class="card-body">
-                                <form:form method="post" action="/login"
-                                           modelAttribute="loginUser">
-                                <c:set var="errorEmail"><form:errors path="email" cssClass="invalid-feedback"/></c:set>
-                                <c:set var="errorPassword"><form:errors path="password" cssClass="invalid-feedback"/></c:set>
+                                <form:form method="post" action="/login">
                                 <div class="form-floating mb-3">
-                                    <form:input type="text" path="email"
-                                                class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
-                                                aria-describedby="emailHelp"/>
-                                        ${errorEmail}
+                                    <input type="text" name="username"
+                                                class="form-control"/>
                                     <label>Email address</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                        <form:input type="text" path="password"
-                                                    class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
+                                        <input type="password" name="password"
+                                               class="form-control"
                                         />
-                                            ${errorPassword}
                                         <label>Password</label>
-                                    </div>
-
+                                </div>
+                                <div>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                </div>
                                 <div class="mt-4 mb-0">
 
                                     <div class="d-grid">
