@@ -66,7 +66,7 @@ public class UserController {
             String hashPassword = passwordEncoder.encode(dtdat.getPassword());
 
             dtdat.setAvartar(fileImg);
-            dtdat.setPassword(passwordEncoder.encode(hashPassword));
+            dtdat.setPassword(hashPassword);
             dtdat.setRole( userService.getRoleByName(dtdat.getRole().getName()));
            this.userService.handleSaveUser(dtdat);
             return "redirect:/admin/user";
