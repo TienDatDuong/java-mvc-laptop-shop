@@ -1,5 +1,6 @@
 package laptopshop.config;
 
+import jakarta.servlet.DispatcherType;
 import laptopshop.service.CustomUserDetailsService;
 import laptopshop.service.UserService;
 import org.springframework.context.annotation.Bean;
@@ -55,7 +56,15 @@ public class securityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().permitAll())
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD,
+                                DispatcherType.INCLUDE)
+                        .permitAll()
+
+                        .requestMatchers("/","/login","/product/**", "/client/**", "/css/**", "/js/**", "/images/**")
+                        .permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().authenticated())
+
 
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")

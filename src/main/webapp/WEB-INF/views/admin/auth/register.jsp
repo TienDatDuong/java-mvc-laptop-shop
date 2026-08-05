@@ -56,7 +56,7 @@
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                    <form:input type="password" path="password"
+                                                    <form:input type="password" path="password" autocomplete="new-password"
                                                                 class="form-control"
                                                                 aria-describedby="emailHelp"/>
                                                 <label>Password</label>
@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                    <form:input type="password" path="confirmPassword"
+                                                    <form:input type="password" path="confirmPassword" autocomplete="new-password"
                                                                 class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
                                                     />
                                                     ${errorPassword}

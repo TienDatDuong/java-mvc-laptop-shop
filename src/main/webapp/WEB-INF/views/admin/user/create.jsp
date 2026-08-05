@@ -54,9 +54,9 @@
                                 </spring:bind>
                             </div>
                             <div class="mb-3 col-sm-6">
-                                <spring:bind path="newUser.email">
+                                <spring:bind path="newUser.password">
                                 <label for="password" class="form-label">Password</label>
-                                <form:input type="password" path="password" class="form-control ${status.error ? 'is-invalid' : ''}"/>
+                                <form:input type="password" path="password" autocomplete="new-password" class="form-control ${status.error ? 'is-invalid' : ''}"/>
                                 <form:errors path="password" cssClass="invalid-feedback"/>
                                 </spring:bind>
                             </div>
@@ -118,7 +118,6 @@
 <script src="/js/scripts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 
-<s
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
 
