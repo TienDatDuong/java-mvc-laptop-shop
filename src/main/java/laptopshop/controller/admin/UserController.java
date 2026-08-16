@@ -119,7 +119,7 @@ public class UserController {
      public String deleteUserPage(Model model, @PathVariable long id) {
         model.addAttribute("id", id);
         model.addAttribute("users", new User());
-     return "/admin/user/delete";
+     return "admin/user/delete";
      }
 
     @PostMapping("/admin/user/delete")

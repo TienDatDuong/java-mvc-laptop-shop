@@ -2,7 +2,6 @@ package laptopshop.controller.client;
 
 import jakarta.validation.Valid;
 import laptopshop.domain.DTO.RegisterDTO;
-import laptopshop.domain.DTO.loginDTO;
 import laptopshop.domain.User;
 import laptopshop.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -71,7 +70,6 @@ public class HomePageController {
 
     @RequestMapping("/login")
     public String getLoginPage(Model model) {
-        model.addAttribute("loginUser", new loginDTO());
         return "client/auth/login";
     }
 

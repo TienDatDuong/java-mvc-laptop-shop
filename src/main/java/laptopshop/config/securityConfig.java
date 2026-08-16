@@ -1,5 +1,6 @@
 package laptopshop.config;
 
+import jakarta.servlet.DispatcherType;
 import laptopshop.service.CustomUserDetailsService;
 import laptopshop.service.UserService;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
@@ -27,7 +29,7 @@ public class securityConfig {
         return new CustomUserDetailsService(userService);
     }
 
-//    @Bean
+    //    @Bean
 //    public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder,
 //                                                       UserDetailsService userDetailsService) throws Exception {
 //        AuthenticationManagerBuilder authenticationManagerBuilder = http
@@ -37,7 +39,7 @@ public class securityConfig {
 //                .passwordEncoder(passwordEncoder);
 //        return authenticationManagerBuilder.build();
 //    }
-
+    @Bean
     public DaoAuthenticationProvider authProvider(
             PasswordEncoder passwordEncoder,
             UserDetailsService userDetailsService) {
@@ -49,6 +51,30 @@ public class securityConfig {
 
         return authProvider;
     }
+
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(authorize -> authorize
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD,
+                                DispatcherType.INCLUDE)
+                        .permitAll()
+
+                        .requestMatchers("/","/login","/product/**", "/client/**", "/css/**", "/js/**", "/images/**")
+                        .permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().authenticated())
+
+
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/login")
+                        .failureUrl("/login?error")
+                        .permitAll());
+
+        return http.build();
+    }
+
+
 
 
 
