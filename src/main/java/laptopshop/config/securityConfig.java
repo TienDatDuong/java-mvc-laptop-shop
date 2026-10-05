@@ -68,7 +68,8 @@ public class securityConfig {
                                 DispatcherType.INCLUDE)
                         .permitAll()
 //requestMatchers nhưng url ở đây mới được quyền truy cập ko sẽ bị đá ra trang login
-                        .requestMatchers("/","/login","/product/**", "/client/**", "/css/**", "/js/**", "/images/**")
+                        .requestMatchers("/","/login","/product/**",
+                                "/client/**", "/css/**", "/js/**", "/images/**")
                         .permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
@@ -79,7 +80,8 @@ public class securityConfig {
                         .failureUrl("/login?error")
                         .successHandler(customSuccessHandler())
                         .permitAll())
-                .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny"));
+                .exceptionHandling(
+                        ex -> ex.accessDeniedPage("/access-deny"));
 
         return http.build();
     }
