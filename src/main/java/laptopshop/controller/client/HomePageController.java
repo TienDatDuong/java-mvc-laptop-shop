@@ -1,5 +1,7 @@
 package laptopshop.controller.client;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import laptopshop.domain.DTO.RegisterDTO;
 import laptopshop.domain.User;

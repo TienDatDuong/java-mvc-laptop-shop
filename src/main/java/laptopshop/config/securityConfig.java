@@ -55,10 +55,10 @@ public class securityConfig {
         return authProvider;
     }
 
-    @Bean
-    public AuthenticationSuccessHandler customSuccessHandler() {
-        return new CustomSuccessHandler();
-    }
+//    @Bean
+//    public AuthenticationSuccessHandler customSuccessHandler() {
+//        return new CustomSuccessHandler();
+//    }
 
     @Bean
     public SpringSessionRememberMeServices rememberMeServices() {
@@ -71,7 +71,7 @@ public class securityConfig {
 
 
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http,CustomSuccessHandler customSuccessHandler) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD,
@@ -96,7 +96,7 @@ public class securityConfig {
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/login?error")
-                        .successHandler(customSuccessHandler())
+                        .successHandler(customSuccessHandler)
                         .permitAll())
                 .exceptionHandling(
                         ex -> ex.accessDeniedPage("/access-deny"));
