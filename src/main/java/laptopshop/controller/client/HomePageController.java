@@ -39,6 +39,11 @@ public class HomePageController {
         return "client/homepage/show";
     }
 
+    @GetMapping("/datepicker")
+    public String getDatePicker(Model model, HttpServletRequest request) {
+        return "client/homepage/datepicker";
+    }
+
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("registerUser", new RegisterDTO());

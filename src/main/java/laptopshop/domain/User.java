@@ -1,3 +1,4 @@
+
 package laptopshop.domain;
 
 import javax.management.MXBean;
