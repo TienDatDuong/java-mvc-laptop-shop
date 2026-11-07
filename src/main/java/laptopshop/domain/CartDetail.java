@@ -5,29 +5,31 @@ import jakarta.validation.constraints.Min;
 
 import java.util.List;
 @Entity
-@Table(name= "cart_detail")
+@Table(name = "cart_detail")
 public class CartDetail {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private long quantity;
 
-   private double price;
+    private double price;
 
-   @ManyToOne
-   @JoinColumn(name = "cart_id")
-   private Cart cart;
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
-   @ManyToOne
-   @JoinColumn(name = "product_id")
-   private Products product;
+    //cart_id: long
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Products product;
 
-   public long getId() {
-       return id;
-   }
+    public long getId() {
+        return id;
+    }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

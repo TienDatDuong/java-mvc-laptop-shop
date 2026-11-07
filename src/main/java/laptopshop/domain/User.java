@@ -40,6 +40,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> order;
 
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
+
     @Override
     public String toString() {
         return "User{" +

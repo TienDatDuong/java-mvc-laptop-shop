@@ -6,19 +6,21 @@ import jakarta.validation.constraints.Min;
 import java.util.List;
 
 @Entity
-@Table(name= "carts")
+@Table(name="carts")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    public long id;
 
     @Min(value = 0)
     private int sum;
 
-    @OneToOne
+    //user_id
+    @OneToOne()
     @JoinColumn(name = "user_id")
     private User user;
 
+    //cart_detail_id
     @OneToMany(mappedBy = "cart")
     List<CartDetail> cartDetails;
 
@@ -45,11 +47,5 @@ public class Cart {
         this.user = user;
     }
 
-    public List<laptopshop.domain.CartDetail> getCartDetails() {
-        return cartDetails;
-    }
-
-    public void setCartDetails(List<laptopshop.domain.CartDetail> cartDetails) {
-        this.cartDetails = cartDetails;
     }
 }
