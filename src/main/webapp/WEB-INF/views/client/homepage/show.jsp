@@ -101,11 +101,17 @@
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4 style="font-size: 15px">${product.name}</h4>
                                                 <p style="font-size: 13px">${product.shortDesc}</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                                <div class="d-flex justify-content-between flex-lg-wrap justify-content-center flex-column">
                                                     <p class="text-dark fs-5 fw-bold mb-0">
                                                             <fmt:formatNumber value="${product.price}"/>
                                                             </p>
-                                                    <a href="/cline/product/detail/${product.id}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    <form action="/add-product-to-cart/${product.id}" method="post">
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                                        <button class="mx-auto btn border-secondary rounded mt-2">
+                                                            Add to cart
+                                                        </button>
+                                                    </form>
+<%--                                                    <a href="/cline/product/detail/${product.id}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>--%>
                                                 </div>
                                             </div>
                                         </div>
